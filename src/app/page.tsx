@@ -5,7 +5,7 @@ import Link from "next/link"
 
 export default function Home() {
 	const [developers, setDevelopers] = useState<Developer[]>([])
-
+	
 	useEffect(() => { 
 		const getDevelopers = async () => {
 			const response = await fetch('/api/auth/developer')
