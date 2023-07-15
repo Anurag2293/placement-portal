@@ -1,12 +1,13 @@
 'use client'
 
 import React, { useState, useEffect } from "react";
-import { useAppSelector } from '@/redux/store';
+import { UserButton } from "@clerk/nextjs";
 import {
     Navbar,
-    MobileNav,
     Typography,
     IconButton,
+    Collapse,
+    Menu
 } from "@material-tailwind/react";
 import {
     Bars2Icon,
@@ -19,7 +20,6 @@ import DeveloperNavList from "./DeveloperNavList";
 export default function DeveloperNavbar() {
     const [isNavOpen, setIsNavOpen] = useState(false);
     const toggleIsNavOpen = () => setIsNavOpen((cur) => !cur);
-    const isAuthenticated = useAppSelector((state) => state.authReducer.value.isAuthenticated);
 
     useEffect(() => {
         window.addEventListener("resize",() => window.innerWidth >= 960 && setIsNavOpen(false));
@@ -32,18 +32,18 @@ export default function DeveloperNavbar() {
     return (
         // <Navbar className="mx-auto max-w-screen-xl p-2 lg:rounded-full lg:pl-6">
         <Navbar className="sticky top z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4">
-            <div className="relative mx-auto flex items-center text-blue-gray-900">
+            <div className="relative mx-auto flex justify-between items-center text-blue-gray-900">
                 <Typography
                     as="a"
-                    href="#"
+                    href="/"
                     className="mr-4 ml-2 cursor-pointer py-1.5 font-medium"
                 >
-                    Placement Portal
+                    <h1 className="text-2xl font-bold">{"Placement Portal"}</h1>
                 </Typography>
-                <div className="absolute top-2/4 left-2/4 hidden -translate-x-2/4 -translate-y-2/4 lg:block">
+                {/* <div className="absolute top-2/4 left-2/4 hidden -translate-x-2/4 -translate-y-2/4 lg:block">
                     <DeveloperNavList />
-                </div>
-                <IconButton
+                </div> */}
+                {/* <IconButton
                     size="sm"
                     color="blue-gray"
                     variant="text"
@@ -51,12 +51,15 @@ export default function DeveloperNavbar() {
                     className="ml-auto mr-2 lg:hidden"
                 >
                     <Bars2Icon className="h-6 w-6" />
-                </IconButton>
-                {isAuthenticated && <DeveloperProfileMenu />}
+                </IconButton> */}
+                <div>
+                    <UserButton afterSignOutUrl="/" />
+                </div>
+                {/* {isAuthenticated && <DeveloperProfileMenu />} */}
             </div>
-            <MobileNav open={isNavOpen} className="overflow-scroll">
+            {/* <Collapse open={isNavOpen} className="overflow-scroll">
                 <DeveloperNavList />
-            </MobileNav>
+            </Collapse> */}
         </Navbar>
     );
 }
