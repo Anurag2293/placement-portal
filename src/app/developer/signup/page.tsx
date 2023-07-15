@@ -7,7 +7,7 @@ const DeveloperSignUp = (props: Props) => {
     return (
         <>
             <section className='h-5/6 flex justify-center items-center'>
-                <SignUp />
+                {/* <SignUp /> */}
             </section>
         </>
     )
