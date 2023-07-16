@@ -45,7 +45,7 @@ const SignUp = (props: Props) => {
 
     return (
         <Card className='' color="transparent" shadow={false}>
-            <Typography variant="h4" color="blue-gray">
+            {/* <Typography variant="h4" color="blue-gray">
                 Sign Up
             </Typography>
             <Typography color="gray" className="mt-1 font-normal">
@@ -66,7 +66,7 @@ const SignUp = (props: Props) => {
                     >
                         I agree the
                         <a href="#" className="font-medium transition-colors hover:text-blue-500">
-                            &nbsp;Terms and Conditions
+                            Terms and Conditions
                         </a>
                     </Typography>)}
                     containerProps={{ className: "-ml-2.5" }}
@@ -83,7 +83,7 @@ const SignUp = (props: Props) => {
                         Sign In
                     </Link>
                 </Typography>
-            </form>
+            </form> */}
         </Card>
     );
 }

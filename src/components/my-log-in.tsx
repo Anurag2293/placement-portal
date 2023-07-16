@@ -60,7 +60,7 @@ const Login = (props: Props) => {
 
     return (
         <Card className='' color="transparent" shadow={false}>
-            <Typography variant="h4" color="blue-gray">
+            {/* <Typography variant="h4" color="blue-gray">
                 Login
             </Typography>
             <Typography color="gray" className="mt-1 font-normal">
@@ -83,7 +83,7 @@ const Login = (props: Props) => {
                         Sign Up
                     </Link>
                 </Typography>
-            </form>
+            </form> */}
         </Card>
     );
 }
