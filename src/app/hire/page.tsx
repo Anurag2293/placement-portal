@@ -6,9 +6,9 @@ import { useRouter} from 'next/navigation'
 
 type Props = {}
 
-const HireHome = (props: Props) => {
+const HireDashboard = (props: Props) => {
     const router = useRouter();
-    const {isAuthenticated, name} = useAppSelector(state => state.hireAuth.value);
+    const {isAuthenticated, name, hrName } = useAppSelector(state => state.hireAuth.value);
 
     useEffect(() => {
         if (!isAuthenticated) {
@@ -18,10 +18,9 @@ const HireHome = (props: Props) => {
 
     return (
         <div>
-            <h1>Welcome, {name}!</h1>
-            <p>Your search ends for talented devs!</p>
+            <h1 className='text-2xl font-bold'>Welcome, {name}!</h1>
         </div>
     )
 }
 
-export default HireHome
+export default HireDashboard

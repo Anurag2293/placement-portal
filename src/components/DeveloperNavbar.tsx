@@ -13,7 +13,6 @@ import {
     Bars2Icon,
 } from "@heroicons/react/24/outline";
 
-import DeveloperProfileMenu from "./DeveloperProfileMenu";
 import DeveloperNavList from "./DeveloperNavList";
 
 

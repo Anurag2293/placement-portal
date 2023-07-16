@@ -7,10 +7,9 @@ type Props = {}
 
 const HireSignIn = (props: Props) => {
     return (
-        <>
-            <div>Hire Sign In</div>
+        <div className='h-screen flex justify-center items-center'>
             <SignIn />
-        </>
+        </div>
     )
 }
 
