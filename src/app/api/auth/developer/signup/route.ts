@@ -11,7 +11,7 @@ export const POST = async (request: Request) => {
             data: {
                 name,
                 email,
-                password,
+                externalId: ''
             },
         })
         return NextResponse.json({succes: true, message: "Successfully Signed Up!", developer});

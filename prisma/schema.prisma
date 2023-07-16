@@ -12,12 +12,11 @@ datasource db {
 
 // create a developer table
 model Developer {
-  id        Int      @id @default(autoincrement()) @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime? @updatedAt
-  name      String   @db.VarChar(255)
-  email     String   @unique
-  password  String   @db.VarChar(255)
+  id        Int       @id @default(autoincrement()) @unique
+  externalId String   @unique
+  createdAt DateTime  @default(now())
+  name      String    @db.VarChar(255)
+  email     String    @unique
   location  String?   @db.VarChar(255)
   bio       String?   @db.VarChar(255)
   avatar    String?   @db.VarChar(255)

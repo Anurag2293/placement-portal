@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import DeveloperNavbar from '@/components/DeveloperNavbar'
+
 
 export const metadata: Metadata = {
     title: 'Placement Portal',
@@ -14,7 +14,6 @@ export default function DeveloperLayout({
 }) {
     return (
         <section className='h-screen bg-gray-200'>
-            <DeveloperNavbar />
             {children}
         </section>
     )

@@ -30,7 +30,6 @@ export default function DeveloperNavbar() {
     }, []);
 
     return (
-        // <Navbar className="mx-auto max-w-screen-xl p-2 lg:rounded-full lg:pl-6">
         <Navbar className="sticky top z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4">
             <div className="relative mx-auto flex justify-between items-center text-blue-gray-900">
                 <Typography
