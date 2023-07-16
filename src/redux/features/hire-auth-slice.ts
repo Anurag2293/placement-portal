@@ -3,43 +3,46 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 type AuthState = {
     isAuthenticated: boolean;
     name: string;
+    hrName: string;
     id: string;
-    isModerator: boolean;
 }
 
 type InitialState = {
     value: AuthState
 }
 
+type LoginPayloadAction = {
+    hireName: string;
+    hrName: string;
+    id: string;
+};
+
 const initialState = {
     value: {
         isAuthenticated: false,
         name: "",
         id: "",
-        isModerator: false,
     } as AuthState
 } as InitialState;
 
 export const auth = createSlice({
-    name: 'auth',
+    name: 'hire-auth',
     initialState,
     // Reducers are actual function that take in action and state and return new state
     reducers: {
         logOut: () => {
             return initialState;
         },
-        logIn: (state, action: PayloadAction<string>) => {
+        logIn: (state, action: PayloadAction<LoginPayloadAction>) => {
             return {
                 value: {
                     isAuthenticated: true,
-                    name: action.payload,
-                    id: "",
+                    name: action.payload.hireName,
+                    id: action.payload.id,
+                    hrName: action.payload.hrName,
                     isModerator: false,
                 }
             }
-        },
-        toggleModerator: (state) => {
-            state.value.isModerator = !state.value.isModerator;
         }
     }
 });

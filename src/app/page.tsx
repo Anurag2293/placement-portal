@@ -5,8 +5,10 @@ import MainNavbar from "@/components/MainNavbar"
 export default function Home() {
 
 	return (
-		<div>
-			<MainNavbar />			
-		</div>
+		<>
+			<header>
+				<MainNavbar />			
+			</header>
+		</>
 	)
 }

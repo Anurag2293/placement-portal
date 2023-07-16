@@ -6,7 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/redux/store';
-import { logIn } from '@/redux/features/dev-auth-slice';
+import { logIn } from '@/redux/features/hire-auth-slice';
 
 import {
     Card,

@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from "react";
-import { logOut } from "@/redux/features/dev-auth-slice";
+import { logOut } from "@/redux/features/hire-auth-slice";
 import { AppDispatch } from "@/redux/store";
 import { useDispatch } from "react-redux";
 

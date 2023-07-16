@@ -35,8 +35,11 @@ model Skill {
 model Company {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
   name      String   @db.VarChar(255)
+  hrName    String   @db.VarChar(255)
   email     String   @unique
   password  String   @db.VarChar(255)
+  location  String?  @db.VarChar(255)
+  website   String?  @db.VarChar(255)
+  logo      String?  @db.VarChar(255)
 }

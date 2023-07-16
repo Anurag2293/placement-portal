@@ -27,23 +27,28 @@ export default function MainNavbar() {
     }, []);
 
     return (
-        <Navbar className="mx-auto max-w-screen-xl px-4 py-2">
+        <Navbar className="mx-auto max-w-screen-4xl px-4 py-2 mt-2">
             <div className="flex items-center justify-between text-blue-gray-900">
-                <Typography
-                    as="a"
-                    href="#"
-                    variant="h6"
-                    className="mr-4 cursor-pointer py-1.5 lg:ml-2"
-                >
-                    Material Tailwind
-                </Typography>
-
+                <Link href="/">
+                    <Typography
+                        variant="h4"
+                        className="mr-4 cursor-pointer py-1.5 lg:ml-2"
+                    >
+                        Placement Portal
+                    </Typography>
+                </Link>
                 <div className="hidden gap-2 lg:flex">
                     <Button variant="text" size="sm" color="blue-gray">
-                        <Link href="/developer/sign-in">Sign In</Link>
+                        <Link href="/work/sign-in">{"Hire Sign In"}</Link>
                     </Button>
                     <Button variant="gradient" size="sm">
-                        <Link href="/developer/sign-up">Sign Up</Link>
+                        <Link href="/work/sign-up">{"Hire Sign Up"}</Link>
+                    </Button>
+                    <Button variant="text" size="sm" color="blue-gray">
+                        <Link href="/developer/sign-in">{"Candidate Sign In"}</Link>
+                    </Button>
+                    <Button variant="gradient" size="sm">
+                        <Link href="/developer/sign-up">{"Candidate Sign Up"}</Link>
                     </Button>
                     <div>
                         <UserButton afterSignOutUrl="/" />
