@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link';
 import { useRouter } from 'next/navigation'
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -24,7 +22,7 @@ type FormValues = {
     terms: boolean;
 };
 
-const Login = (props: Props) => {
+const SignIn = (props: Props) => {
     const dispatch = useDispatch<AppDispatch>();
 
     const router = useRouter();
@@ -32,26 +30,24 @@ const Login = (props: Props) => {
 
     const onSubmit: SubmitHandler<FormValues> = async (data) => {
         try {
-            const response = await fetch('/api/auth/developer/login', {
+            const response = await fetch('/api/company/auth/sign-in', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data),
             });
-            const result = await response.json();
+            const { success, message, company } = await response.json();
 
-            if (result.success == true) {
-                dispatch(logIn(result.developer.name));
-                router.push('/developer');
-            }
-            else {
-                throw new Error(result.message);
+            if (!success) {
+                throw new Error(message);
             }
 
+            dispatch(logIn(company));
+            router.push('/hire');
+            
             setValue('email', '');
             setValue('password', '');
-            console.log(result);
         } catch (error: any) {
             console.log(error);
             alert(error.message);
@@ -60,7 +56,7 @@ const Login = (props: Props) => {
 
     return (
         <Card className='' color="transparent" shadow={false}>
-            {/* <Typography variant="h4" color="blue-gray">
+            <Typography variant="h4" color="blue-gray">
                 Login
             </Typography>
             <Typography color="gray" className="mt-1 font-normal">
@@ -77,15 +73,15 @@ const Login = (props: Props) => {
                 <Typography color="gray" className="mt-4 text-center font-normal">
                     Don't have an account?{" "}
                     <Link
-                        href="/developer/signup"
+                        href="/hire/sign-up"
                         className="font-medium text-blue-500 transition-colors hover:text-blue-700"
                     >
                         Sign Up
                     </Link>
                 </Typography>
-            </form> */}
+            </form>
         </Card>
     );
 }
 
-export default Login
+export default SignIn

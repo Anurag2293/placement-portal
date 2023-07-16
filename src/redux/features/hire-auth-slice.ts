@@ -12,7 +12,7 @@ type InitialState = {
 }
 
 type LoginPayloadAction = {
-    hireName: string;
+    name: string;
     hrName: string;
     id: string;
 };
@@ -37,7 +37,7 @@ export const auth = createSlice({
             return {
                 value: {
                     isAuthenticated: true,
-                    name: action.payload.hireName,
+                    name: action.payload.name,
                     id: action.payload.id,
                     hrName: action.payload.hrName,
                     isModerator: false,
