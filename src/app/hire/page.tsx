@@ -16,7 +16,7 @@ const HireDashboard = (props: Props) => {
         if (!isAuthenticated) {
             router.push('/hire/sign-in');
         }
-    }, [isAuthenticated])
+    }, [isAuthenticated, router])
 
     return (
         <div>

@@ -57,10 +57,10 @@ const SignIn = (props: Props) => {
     return (
         <Card className='' color="transparent" shadow={false}>
             <Typography variant="h4" color="blue-gray">
-                Sign In
+                {"Sign In"}
             </Typography>
             <Typography color="gray" className="mt-1 font-normal">
-                Enter your credentials to login to Placement Portal Hire
+                {"Enter your credentials to login to Placement Portal Hire"}
             </Typography>
             <form onSubmit={handleSubmit(onSubmit)} className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
                 <div className="mb-4 flex flex-col gap-6">
@@ -68,15 +68,15 @@ const SignIn = (props: Props) => {
                     <Input {...register("password", { required: true })} type="password" size="lg" label="Password" />
                 </div>
                 <Button type="submit" className="mt-6" fullWidth>
-                    Sign In
+                    {"Sign In"}
                 </Button>
                 <Typography color="gray" className="mt-4 text-center font-normal">
-                    Don't have an account?{" "}
+                    {"Don't have an account?"}
                     <Link
                         href="/hire/sign-up"
                         className="font-medium text-blue-500 transition-colors hover:text-blue-700"
                     >
-                        Sign Up
+                        {"Sign Up"}
                     </Link>
                 </Typography>
             </form>
