@@ -12,22 +12,22 @@ datasource db {
 
 // create a developer table
 model Developer {
-  id        Int       @id @default(autoincrement()) @unique
+  id         Int      @id @unique @default(autoincrement())
   externalId String   @unique
-  createdAt DateTime  @default(now())
-  name      String    @db.VarChar(255)
-  email     String    @unique
-  location  String?   @db.VarChar(255)
-  bio       String?   @db.VarChar(255)
-  avatar    String?   @db.VarChar(255)
-  website   String?   @db.VarChar(255)
-  github    String?   @db.VarChar(255)
-  linkedin  String?   @db.VarChar(255)
+  createdAt  DateTime @default(now())
+  name       String   @db.VarChar(255)
+  email      String   @unique
+  location   String?  @db.VarChar(255)
+  bio        String?  @db.VarChar(255)
+  avatar     String?  @db.VarChar(255)
+  website    String?  @db.VarChar(255)
+  github     String?  @db.VarChar(255)
+  linkedin   String?  @db.VarChar(255)
 }
 
 model Skill {
-  id        Int      @id @default(autoincrement())
-  name      String   @db.VarChar(255)
+  id           Int    @id @default(autoincrement())
+  name         String @db.VarChar(255)
   developer_id Int
 }
 
@@ -42,4 +42,21 @@ model Company {
   location  String?  @db.VarChar(255)
   website   String?  @db.VarChar(255)
   logo      String?  @db.VarChar(255)
+}
+
+// create a process/job table
+model Process {
+  id             Int       @id @default(autoincrement())
+  company_id     Int
+  createdAt      DateTime  @default(now())
+  name           String    @db.VarChar(255)
+  role           String    @db.VarChar(255)
+  description    String    @db.LongText
+  compensation   String    @db.MediumText
+  eligibility    String    @db.MediumText
+  start_date     DateTime? @db.DateTime
+  location       String    @db.VarChar(255)
+  remote         Boolean   @default(false)
+  status         String    @db.VarChar(255)
+  apply_deadline DateTime? @db.DateTime
 }
