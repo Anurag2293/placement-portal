@@ -39,10 +39,10 @@ export default function MainNavbar() {
                 </Link>
                 <div className="hidden gap-2 lg:flex">
                     <Button variant="text" size="sm" color="blue-gray">
-                        <Link href="/work/sign-in">{"Hire Sign In"}</Link>
+                        <Link href="/hire/sign-in">{"Hire Sign In"}</Link>
                     </Button>
                     <Button variant="gradient" size="sm">
-                        <Link href="/work/sign-up">{"Hire Sign Up"}</Link>
+                        <Link href="/hire/sign-up">{"Hire Sign Up"}</Link>
                     </Button>
                     <Button variant="text" size="sm" color="blue-gray">
                         <Link href="/developer/sign-in">{"Candidate Sign In"}</Link>

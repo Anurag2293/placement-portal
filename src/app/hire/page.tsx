@@ -4,6 +4,8 @@ import React, { useEffect } from 'react'
 import { useAppSelector } from '@/redux/store'
 import { useRouter} from 'next/navigation'
 
+import HireDashboardComponent from '@/components/HireDashboard'
+
 type Props = {}
 
 const HireDashboard = (props: Props) => {
@@ -18,7 +20,7 @@ const HireDashboard = (props: Props) => {
 
     return (
         <div>
-            <h1 className='text-2xl font-bold'>Welcome, {name}!</h1>
+            <HireDashboardComponent />
         </div>
     )
 }

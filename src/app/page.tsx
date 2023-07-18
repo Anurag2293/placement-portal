@@ -9,6 +9,7 @@ export default function Home() {
 			<header>
 				<MainNavbar />			
 			</header>
+			
 		</>
 	)
 }
