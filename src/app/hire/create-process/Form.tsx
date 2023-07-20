@@ -2,21 +2,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-type ProcessFormValues = {
-    role: string,
-    description: string,
-    compensation: number,
-    eligibility: string,
-    location_country: string,
-    location_state: string,
-    location_city: string,
-    remote: boolean,
-    status: string,
-    mode_of_work: string,
-    expected_start_date: Date,
-    apply_deadline: Date
-}
-
+import { ProcessFormValues } from "@/lib/types";
 
 export default function ProcessForm({ company_id }: { company_id: string }) {
     const router = useRouter();
