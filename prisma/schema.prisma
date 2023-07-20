@@ -51,12 +51,12 @@ model Process {
   createdAt           DateTime  @default(now())
   role                String    @db.VarChar(255)
   description         String    @db.LongText
-  compensation        BigInt    @db.BigInt
+  compensation        Int       @db.Int
   eligibility         String    @db.MediumText
   location_country    String    @db.VarChar(255)
   location_state      String    @db.VarChar(255)
   location_city       String    @db.VarChar(255)
-  remote              Boolean   @default(false)
+  mode_of_work        String    @db.VarChar(255)
   status              String    @default("open") @db.VarChar(255)
   expected_start_date DateTime? @db.DateTime
   apply_deadline      DateTime? @db.DateTime
