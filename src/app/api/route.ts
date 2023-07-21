@@ -21,7 +21,7 @@ export const POST = async (request: Request) => {
         //         name: body.name,
         //         email: body.email,
         //         avatar: body.avatar,
-
+        //
         //     },
         // })
         // return NextResponse.json(developer);

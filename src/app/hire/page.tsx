@@ -1,17 +1,19 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React from 'react'
 import Link from "next/link";
-import { useRouter } from 'next/navigation'
-
-import { useAppSelector } from '@/redux/store'
+import { signOut, useSession } from 'next-auth/react'
 
 type Props = {}
 
 const HireDashboard = (props: Props) => {
-    const router = useRouter();
-    const { isAuthenticated, name, hrName, id } = useAppSelector(state => state.hireAuth.value);
+    // AUTH
+    const { data: session, status } = useSession();
 
+    // REDUX
+    // const dispatch = useDispatch();
+
+    // DATA
     const [processes, setProcesses] = React.useState([]);
     const [loading, setLoading] = React.useState(false);
     const fetchProcesses = async (company_id: string) => {
@@ -22,27 +24,33 @@ const HireDashboard = (props: Props) => {
         setProcesses(data.processes);
     }
 
-    useEffect(() => {
-        if (!isAuthenticated) {
-            router.push('/hire/sign-in');
+    const fetchCompany = async (company_id: string) => {
+        const res = await fetch(`/api/company?id=${company_id}`, {
+            method: 'GET',
+        });
+        const data = await res.json();
+        if (data.company) {
+            fetchProcesses(data.company.id);
         }
-        else {
-            fetchProcesses(id);
-        }
-    }, [isAuthenticated, router])
+    }
 
-    useEffect(() => {
-        console.log({ processes })
-    }, [processes])
+    React.useEffect(() => {
+        if (session) {
+            console.log({session, status})
+        }
+    }, [session]);
 
     return (
         <main id="page-content" className="flex flex-auto flex-col max-w-full">
             <div className="container xl:max-w-7xl mx-auto p-4 lg:p-8">
                 <div className="min-h-full space-y-4 p-4 rounded-xl bg-gray-50 border-2 border-dashed border-gray-200 text-gray-400 dark:bg-gray-800 dark:border-gray-700">
+                    <button className='' onClick={() => signOut()}>
+                        sign out
+                    </button>
                     <p className="font-semibold text-black">Welcome to the Dashboard!</p>
                     <div className="text-black">
-                        <p>Every Opening for a Role / Post is called a "Process" in the system. </p>
-                        <p>You can create a new Process by clicking on the "Create Process" button below.</p>
+                        <p>{"Every Opening for a Role / Post is called a \"Process\" in the system. "}</p>
+                        <p>{"You can create a new Process by clicking on the Create Process button below."}</p>
                         <Link href="/hire/create-process">
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold my-2 py-2 px-4 rounded">
                                 Create Process

@@ -1,10 +1,13 @@
+'use client'
+
 import Link from 'next/link';
 import { useRouter } from 'next/navigation'
 import { SubmitHandler, useForm } from "react-hook-form";
+import { signIn } from "next-auth/react";
 
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/redux/store';
-import { logIn } from '@/redux/features/hire-auth-slice';
+import { logIn } from '@/redux/features/hire-slice';
 
 import {
     Card,
@@ -16,10 +19,8 @@ import {
 type Props = {}
 
 type FormValues = {
-    name: string;
     email: string;
     password: string;
-    terms: boolean;
 };
 
 const SignIn = (props: Props) => {
@@ -28,31 +29,47 @@ const SignIn = (props: Props) => {
     const router = useRouter();
     const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<FormValues>();
 
+    // const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    //     try {
+    //         const response = await fetch('/api/company/auth/sign-in', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             body: JSON.stringify(data),
+    //         });
+    //         const { success, message, company } = await response.json();
+    //
+    //         if (!success) {
+    //             throw new Error(message);
+    //         }
+    //
+    //         dispatch(logIn(company));
+    //         router.push('/hire');
+    //
+    //         setValue('email', '');
+    //         setValue('password', '');
+    //     } catch (error: any) {
+    //         console.log(error);
+    //         alert(error.message);
+    //     }
+    // };
+
     const onSubmit: SubmitHandler<FormValues> = async (data) => {
         try {
-            const response = await fetch('/api/company/auth/sign-in', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data),
+            await signIn('credentials', {
+                redirect: true,
+                callbackUrl: "/hire",
+                email: data.email,
+                password: data.password,
             });
-            const { success, message, company } = await response.json();
-
-            if (!success) {
-                throw new Error(message);
-            }
-
-            dispatch(logIn(company));
-            router.push('/hire');
-            
             setValue('email', '');
             setValue('password', '');
         } catch (error: any) {
             console.log(error);
             alert(error.message);
         }
-    };
+    }
 
     return (
         <Card className='' color="transparent" shadow={false}>

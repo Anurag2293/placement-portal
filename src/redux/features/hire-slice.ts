@@ -1,20 +1,28 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type AuthState = {
+type HireState = {
     isAuthenticated: boolean;
     name: string;
     hrName: string;
     id: string;
+    createdAt: string;
+    location: string;
+    website: string;
+    logo: string;
 }
 
 type InitialState = {
-    value: AuthState
+    value: HireState
 }
 
 type LoginPayloadAction = {
     name: string;
     hrName: string;
     id: string;
+    createdAt: string;
+    location: string;
+    website: string;
+    logo: string;
 };
 
 const initialState = {
@@ -22,31 +30,39 @@ const initialState = {
         isAuthenticated: false,
         name: "",
         id: "",
-    } as AuthState
+        hrName: "",
+        createdAt: "",
+        location: "",
+        website: "",
+        logo: "",
+    } as HireState
 } as InitialState;
 
-export const auth = createSlice({
-    name: 'hire-auth',
+export const hire = createSlice({
+    name: 'hire',
     initialState,
     // Reducers are actual function that take in action and state and return new state
     reducers: {
-        logOut: () => {
+        reduxlogOut: () => {
             return initialState;
         },
-        logIn: (state, action: PayloadAction<LoginPayloadAction>) => {
+        reduxlogIn: (state, action: PayloadAction<LoginPayloadAction>) => {
             return {
                 value: {
                     isAuthenticated: true,
                     name: action.payload.name,
                     id: action.payload.id,
                     hrName: action.payload.hrName,
-                    isModerator: false,
+                    createdAt: action.payload.createdAt,
+                    location: action.payload.location,
+                    website: action.payload.website,
+                    logo: action.payload.logo,
                 }
             }
         }
     }
 });
 
-// Exporting functions from auth actions
-export const { logIn, logOut } = auth.actions;
-export default auth.reducer;
+// Exporting functions from hire actions
+export const { reduxlogIn, reduxlogOut } = hire.actions;
+export default hire.reducer;
