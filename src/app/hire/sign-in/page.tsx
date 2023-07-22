@@ -1,12 +1,16 @@
 'use client'
 
-import React from 'react'
+// NATIVE
+import React, { useEffect } from 'react'
 import Link from 'next/link';
-import { useRouter } from 'next/navigation'
-import { SubmitHandler, useForm } from "react-hook-form";
-import { signIn } from "next-auth/react";
-import {Button, Card, Input, Typography} from "@material-tailwind/react";
+import { useRouter } from 'next/navigation';
 
+// AUTH
+import { signIn, useSession } from "next-auth/react";
+
+// UI
+import { SubmitHandler, useForm } from "react-hook-form";
+import {Button, Card, Input, Typography} from "@material-tailwind/react";
 
 type Props = {}
 
@@ -16,11 +20,9 @@ type FormValues = {
 };
 
 const HireSignIn = (props: Props) => {
-    const { register,
-        handleSubmit,
-        setValue,
-        watch,
-        formState: { errors } } = useForm<FormValues>()
+    const router = useRouter();
+    const { data: session } = useSession();
+    const { register, handleSubmit, setValue } = useForm<FormValues>()
 
     const onSubmit: SubmitHandler<FormValues> = async (data) => {
         try {
@@ -37,6 +39,12 @@ const HireSignIn = (props: Props) => {
             alert(error.message);
         }
     }
+
+    useEffect(() => {
+        if (session) {
+            router.push('/hire');
+        }
+    }, [session]);
 
     return (
         <div className='h-screen flex justify-center items-center'>

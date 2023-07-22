@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { ProcessFormValues } from "@/lib/types";
+import { ProcessFormValues } from "@/types/types";
 
 export default function ProcessForm({ company_id }: { company_id: string }) {
     const router = useRouter();

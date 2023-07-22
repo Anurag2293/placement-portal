@@ -1,42 +1,55 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import Link from "next/link";
-import { signOut, useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react'
+
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/redux/store';
+import { reduxlogIn } from '@/redux/features/hire-slice';
 
 type Props = {}
 
 const HireDashboard = (props: Props) => {
     // AUTH
-    const { data: session, status } = useSession();
+    const { data: session } = useSession();
 
     // REDUX
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
-    // DATA
+    // UI
+    const router = useRouter();
     const [processes, setProcesses] = React.useState([]);
-    const [loading, setLoading] = React.useState(false);
+
     const fetchProcesses = async (company_id: string) => {
+        console.log("fetching processes")
         const res = await fetch(`/api/process?company_id=${company_id}`, {
             method: 'GET',
         });
         const data = await res.json();
         setProcesses(data.processes);
+        console.log({ fetchedProcesses: data})
     }
 
-    const fetchCompany = async (company_id: string) => {
-        const res = await fetch(`/api/company?id=${company_id}`, {
-            method: 'GET',
-        });
-        const data = await res.json();
-        if (data.company) {
-            fetchProcesses(data.company.id);
+    useEffect(() => {
+        const fetchCompany = async (company_id: string) => {
+            const res = await fetch(`/api/company?id=${company_id}`, {
+                method: 'GET',
+            });
+            const data = await res.json();
+            if (data) {
+                fetchProcesses(String(data.id));
+            }
+            dispatch(reduxlogIn(data));
         }
-    }
 
-    React.useEffect(() => {
-        if (session) {
-            console.log({session, status})
+        if (!session) {
+            router.push('/hire/sign-in');
+        } 
+        else if (session) {
+            const company_id = session.user?.id;
+            fetchCompany(company_id);
         }
     }, [session]);
 
@@ -44,9 +57,6 @@ const HireDashboard = (props: Props) => {
         <main id="page-content" className="flex flex-auto flex-col max-w-full">
             <div className="container xl:max-w-7xl mx-auto p-4 lg:p-8">
                 <div className="min-h-full space-y-4 p-4 rounded-xl bg-gray-50 border-2 border-dashed border-gray-200 text-gray-400 dark:bg-gray-800 dark:border-gray-700">
-                    <button className='' onClick={() => signOut()}>
-                        sign out
-                    </button>
                     <p className="font-semibold text-black">Welcome to the Dashboard!</p>
                     <div className="text-black">
                         <p>{"Every Opening for a Role / Post is called a \"Process\" in the system. "}</p>

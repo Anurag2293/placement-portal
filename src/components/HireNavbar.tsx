@@ -1,15 +1,20 @@
 'use client'
+// NATIVE
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Fragment, ReactNode, FunctionComponent, useState } from "react";
-import { Menu, Transition } from "@headlessui/react";
-import { signOut, signIn, useSession } from 'next-auth/react'
+import { Fragment, ReactNode, useState, useEffect } from "react";
 
-// import { useAppSelector } from "@/redux/store";
-// import { useDispatch } from "react-redux";
-// import { AppDispatch } from '@/redux/store';
-// import { logOut } from "@/redux/features/hire-auth-slice";
+// UI
+import { Menu, Transition } from "@headlessui/react";
 import { COMPANY_LOGO, DASHBOARD_ICON, CUSTOMERS_ICON, PROJECTS_ICON, SALES_ICON, SETTINGS_ICON, ACCOUNT_ICON, NOTIFICATIONS_ICON, INBOX_ICON, SIGNOUT_ICON } from "./SVGComponents";
+
+// SESSION
+import { signOut, useSession } from 'next-auth/react'
+
+// REDUX
+import { useDispatch } from 'react-redux';
+import { AppDispatch, useAppSelector } from '@/redux/store';
+import { reduxlogOut } from '@/redux/features/hire-slice';
 
 const navigation: NavigationItem[] = [
 	{ name: 'Dashboard', href: '/hire', icon: DASHBOARD_ICON },
@@ -25,46 +30,33 @@ interface NavigationItem {
 }
 
 export default function HireNavbar() {
+	// AUTH
+	const { data: session } = useSession();
+
+	// REDUX
+	const { name, hrName } = useAppSelector((state) => state.hire.value)
+	const dispatch = useDispatch<AppDispatch>();
+
+	// UI
 	const pathname = usePathname();
 	const [mobileNavOpen, setMobileNavOpen] = useState(false);
-	const { data: session, status } = useSession();
 	
-	// const { isAuthenticated, name, hrName } = useAppSelector(state => state.hireAuth.value);
-	// const dispatch = useDispatch<AppDispatch>();
-
-	// const handleSignOut = () => {
-	//     dispatch(logOut());
-	// }
-
-	if (!session || !session.user) {
-		return (
-			<>
-				<header className="flex gap-4 p-4 bg-gradient-to-b from-white to-gray-200 shadow">
-					<Link className="transition-colors hover:text-blue-500" href={"/"}>
-						Home Page
-					</Link>
-					<Link className="transition-colors hover:text-blue-500" href={"/UserPost"}>
-						User Post Page
-					</Link>
-					<button onClick={() => signIn()} className="text-green-600 ml-auto">
-						Signin
-					</button>
-				</header>
-			</>
-		)
+	const logOutHandler = async () => {
+		signOut();
+		dispatch(reduxlogOut());
 	}
 
 	return (
 		<>
-			{/**${pathname === '/hire/sign-in' || pathname === '/hire/sign-up' ? 'hidden' : 'sticky top-0 z-10'} */}
-			<header id="page-header" className={`flex flex-none items-center bg-white shadow-sm z-1 dark:bg-gray-800 ${pathname === '/hire/sign-in' || pathname === '/hire/sign-up' ? 'hidden' : 'sticky top-0 z-10'}`}>
+			<header id="page-header" className={`flex flex-none items-center bg-white shadow-sm z-1 dark:bg-gray-800 
+				${session ? 'sticky top-0 z-10' : 'hidden'}`}>
 				<div className="container xl:max-w-7xl mx-auto px-4 lg:px-8">
 					<div className="flex justify-between py-4">
 						{/* Left Section */}
 						<div className="flex items-center">
 							<a href="#" className="group inline-flex items-center space-x-2 font-bold text-lg tracking-wide text-gray-900 hover:text-gray-600 dark:text-gray-100 dark:hover:text-gray-300">
 								<COMPANY_LOGO />
-								<span>Placement Portal X </span>
+								<span>Placement Portal X {name}</span>
 							</a>
 						</div>
 						{/* END Left Section */}
@@ -89,7 +81,7 @@ export default function HireNavbar() {
 							<Menu as="div" className="relative inline-block">
 								{/* Dropdown Toggle Button */}
 								<Menu.Button className="inline-flex justify-center items-center space-x-2 border font-semibold rounded-lg px-3 py-2 leading-5 text-sm border-gray-200 bg-white text-gray-800 hover:border-gray-300 hover:text-gray-900 hover:shadow-sm focus:ring focus:ring-gray-300 focus:ring-opacity-25 active:border-gray-200 active:shadow-none dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:border-gray-600 dark:hover:text-gray-200 dark:focus:ring-gray-600 dark:focus:ring-opacity-40 dark:active:border-gray-700">
-									<span>{"hrName"}</span>
+									<span>{hrName}</span>
 									<svg className="hi-mini hi-chevron-down inline-block w-5 h-5 opacity-40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" /></svg>
 								</Menu.Button>
 								{/* END Dropdown Toggle Button */}
@@ -160,7 +152,7 @@ export default function HireNavbar() {
 													)}
 												</Menu.Item>
 											</div>
-											<div onClick={() => signOut()} className="p-2.5 space-y-1">
+											<div onClick={logOutHandler} className="p-2.5 space-y-1">
 												<Menu.Item>
 													{({ active }) => (
 														<a

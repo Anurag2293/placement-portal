@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type HireState = {
-    isAuthenticated: boolean;
     name: string;
     hrName: string;
     id: string;
@@ -27,7 +26,6 @@ type LoginPayloadAction = {
 
 const initialState = {
     value: {
-        isAuthenticated: false,
         name: "",
         id: "",
         hrName: "",
@@ -49,7 +47,6 @@ export const hire = createSlice({
         reduxlogIn: (state, action: PayloadAction<LoginPayloadAction>) => {
             return {
                 value: {
-                    isAuthenticated: true,
                     name: action.payload.name,
                     id: action.payload.id,
                     hrName: action.payload.hrName,

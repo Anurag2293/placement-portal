@@ -55,10 +55,10 @@ const handler = NextAuth({
             session.user.id = companyProfile?.id
             return session
         }
+    },
+    pages: {
+        signIn: '/hire/sign-in',
     }
-    // pages: {
-    //     signIn: '/hire/sign-in',
-    // }
 })
 
 export { handler as GET, handler as POST }
