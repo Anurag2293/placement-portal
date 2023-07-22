@@ -50,6 +50,7 @@ export const POST = async (request: Request) => {
         })
 
         const { password, ...result } = company
+        console.log(result)
         return new NextResponse(JSON.stringify({company: result, message: "Company created successfully", success: true}))
     } catch (error: any) {
         return new NextResponse(JSON.stringify({message: error.message, success: false}))

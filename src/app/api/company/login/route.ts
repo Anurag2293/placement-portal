@@ -28,6 +28,7 @@ export const POST = async (request: Request) => {
         }
 
         const { password, ...result } = company
+        console.log(result)
         return new NextResponse(JSON.stringify(result))
     } catch (error: any) {
         return new NextResponse(JSON.stringify(null))
