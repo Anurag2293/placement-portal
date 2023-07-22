@@ -3,7 +3,7 @@
 import React, { useEffect } from 'react'
 import { useAuth, useUser  } from "@clerk/nextjs";
 import { useRouter } from 'next/navigation'
-import DeveloperNavbar from '@/components/DeveloperNavbar'
+import DeveloperNavbar from '@/components/ui/DeveloperNavbar'
 
 type Props = {}
 

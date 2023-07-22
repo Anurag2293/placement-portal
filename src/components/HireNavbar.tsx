@@ -6,7 +6,7 @@ import { Fragment, ReactNode, useState, useEffect } from "react";
 
 // UI
 import { Menu, Transition } from "@headlessui/react";
-import { COMPANY_LOGO, DASHBOARD_ICON, CUSTOMERS_ICON, PROJECTS_ICON, SALES_ICON, SETTINGS_ICON, ACCOUNT_ICON, NOTIFICATIONS_ICON, INBOX_ICON, SIGNOUT_ICON } from "./SVGComponents";
+import { COMPANY_LOGO, DASHBOARD_ICON, CUSTOMERS_ICON, PROJECTS_ICON, SALES_ICON, SETTINGS_ICON, ACCOUNT_ICON, NOTIFICATIONS_ICON, INBOX_ICON, SIGNOUT_ICON } from "./ui/SVGComponents";
 
 // SESSION
 import { signOut, useSession } from 'next-auth/react'

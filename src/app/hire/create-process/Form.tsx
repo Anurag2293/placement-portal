@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 import { ProcessFormValues } from "@/types/types";
 
-export default function ProcessForm({ company_id }: { company_id: string }) {
+export default function ProcessForm({ hire_id }: { hire_id: string }) {
     const router = useRouter();
     const { register, handleSubmit, setValue, formState: { errors } } = useForm<ProcessFormValues>();
 
@@ -13,7 +13,7 @@ export default function ProcessForm({ company_id }: { company_id: string }) {
             const parsedCompensation = parseInt(data.compensation.toString());
             const newData = { 
                 ...data, 
-                company_id, 
+                company_id : hire_id, 
                 compensation: parsedCompensation,
             }
             const response = await fetch('/api/process/create', {
