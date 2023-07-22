@@ -54,10 +54,10 @@ export default function HireNavbar() {
 					<div className="flex justify-between py-4">
 						{/* Left Section */}
 						<div className="flex items-center">
-							<a href="#" className="group inline-flex items-center space-x-2 font-bold text-lg tracking-wide text-gray-900 hover:text-gray-600 dark:text-gray-100 dark:hover:text-gray-300">
+							<Link href="/" className="group inline-flex items-center space-x-2 font-bold text-lg tracking-wide text-gray-900 hover:text-gray-600 dark:text-gray-100 dark:hover:text-gray-300">
 								<COMPANY_LOGO />
 								<span>Placement Portal X {name}</span>
-							</a>
+							</Link>
 						</div>
 						{/* END Left Section */}
 
