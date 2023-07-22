@@ -44,7 +44,7 @@ const HireSignIn = (props: Props) => {
         if (session) {
             router.push('/hire');
         }
-    }, [session]);
+    }, [session, router]);
 
     return (
         <div className='h-screen flex justify-center items-center'>
