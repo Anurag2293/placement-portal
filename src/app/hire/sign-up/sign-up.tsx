@@ -26,7 +26,7 @@ const SignUp = (props: Props) => {
 
     const onSubmit: SubmitHandler<FormValues> = async (data) => {
         try {
-            const response = await fetch('/api/company/auth/sign-up', {
+            const response = await fetch('/api/company', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -40,6 +40,7 @@ const SignUp = (props: Props) => {
             }
 
             setValue('name', '');
+            setValue('hrName', '');
             setValue('email', '');
             setValue('password', '');
             setValue('terms', false);
