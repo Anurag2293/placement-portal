@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/lib/prisma";
 import * as bcrypt from "bcrypt";
-
-const prisma = new PrismaClient()
 
 type RequestBody = {
     email: string,
