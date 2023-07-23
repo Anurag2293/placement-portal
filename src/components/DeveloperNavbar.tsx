@@ -26,23 +26,23 @@ export default function DeveloperNavbar() {
             <div className="flex justify-start items-center text-white ">
                 <Link className="pl-0 md:pl-8 font-semibold text-xl" href="/developer">
                     <span>Hacker</span>
-                    <span className="text-green-primary">Code</span>
+                    <span className="text-brand-primary">Code</span>
                 </Link>
                 <div className="mx-5 md:block hidden text-dark-gray">|</div>
                 <div className="md:block hidden">
                     <div className="flex justify-between items-center space-x-4">
                         <div className="">
-                            <Link className={`px-4 pb-4 ${pathname === '/developer' && 'border-b-4 border-green-primary'}`} href="/developer">
+                            <Link className={`px-4 pb-4 ${pathname === '/developer' && 'border-b-4 border-brand-primary'}`} href="/developer">
                                 Dashboard
                             </Link>
                         </div>
                         <div>
-                            <Link className={`px-4 pb-4 ${pathname === '/developer/apply' && 'border-b-4 border-green-primary'}`} href="/developer/apply">
+                            <Link className={`px-4 pb-4 ${pathname === '/developer/apply' && 'border-b-4 border-brand-primary'}`} href="/developer/apply">
                                 Apply
                             </Link>
                         </div>
                         <div>
-                            <Link className={`px-4 pb-4 ${pathname === '/developer/practice' && 'border-b-4 border-green-primary'}`} href="/developer/practice">
+                            <Link className={`px-4 pb-4 ${pathname === '/developer/practice' && 'border-b-4 border-brand-primary'}`} href="/developer/practice">
                                 Practice
                             </Link>
                         </div>
