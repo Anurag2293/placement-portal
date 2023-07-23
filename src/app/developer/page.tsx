@@ -1,9 +1,8 @@
 'use client'
 
 import React, { useEffect } from 'react'
-import { useAuth, useUser  } from "@clerk/nextjs";
+import { useUser  } from "@clerk/nextjs";
 import { useRouter } from 'next/navigation'
-import DeveloperNavbar from '@/components/ui/DeveloperNavbar'
 
 type Props = {}
 
@@ -40,8 +39,8 @@ const DeveloperHome = (props: Props) => {
 
     return (
         <div>
-            <DeveloperNavbar />
-            <h1 className='text-3xl font-bold'>Welcome, {user?.firstName}!</h1>
+            
+            <h1 className='text-white text-3xl font-bold'>Welcome, {user?.firstName}!</h1>
         </div>
     )
 }
