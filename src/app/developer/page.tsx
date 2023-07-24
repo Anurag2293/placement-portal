@@ -2,12 +2,14 @@
 
 import React, { useEffect } from 'react'
 import { useUser } from "@clerk/nextjs";
+import { useRouter } from 'next/navigation';
 
 import DevActionMenu from '@/components/ui/DevNavMenu';
 
 type Props = {}
 
 const DeveloperHome = (props: Props) => {
+    const router = useRouter()
     const { isSignedIn, user } = useUser();
 
     useEffect(() => {
@@ -32,6 +34,7 @@ const DeveloperHome = (props: Props) => {
 
         if (isSignedIn) {
             validateUserWithBackend()
+            router.refresh()
         } else {
             console.log('User is not signed in')
         }
@@ -53,7 +56,7 @@ const DeveloperHome = (props: Props) => {
             <section>
                 <div id='applications' className='w-full md:w-5/6 mx-auto py-4'>
                     <h1>Applications</h1>
-
+                    
                 </div>
             </section>
         </>

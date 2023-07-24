@@ -25,18 +25,3 @@ export const POST = async (request: Request) => {
         return NextResponse.json({ success: false, message: error.message, body }, { status: 500 });
     }
 }
-
-/*
-company_id     Int
-createdAt      DateTime  @default(now())
-name           String    @db.VarChar(255)
-role           String    @db.VarChar(255)
-description    String    @db.LongText
-compensation   String    @db.MediumText
-eligibility    String    @db.MediumText
-start_date     DateTime? @db.DateTime
-location       String    @db.VarChar(255)
-remote         Boolean   @default(false)
-status         String    @db.VarChar(255)
-apply_deadline DateTime? @db.DateTime
-*/

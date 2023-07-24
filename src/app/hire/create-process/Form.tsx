@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import type { Process } from "@/types/types";
+import type { Process } from "@prisma/client";
 
 export default function ProcessForm({ hire_id }: { hire_id: string }) {
     const router = useRouter();
