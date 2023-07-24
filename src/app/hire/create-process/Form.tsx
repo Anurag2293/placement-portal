@@ -2,13 +2,13 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { ProcessFormValues } from "@/types/types";
+import type { Process } from "@/types/types";
 
 export default function ProcessForm({ hire_id }: { hire_id: string }) {
     const router = useRouter();
-    const { register, handleSubmit, setValue, formState: { errors } } = useForm<ProcessFormValues>();
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm<Process>();
 
-    const onSubmit: SubmitHandler<ProcessFormValues> = async (data) => {
+    const onSubmit: SubmitHandler<Process> = async (data) => {
         try {
             const parsedCompensation = parseInt(data.compensation.toString());
             const newData = { 
@@ -37,7 +37,6 @@ export default function ProcessForm({ hire_id }: { hire_id: string }) {
             setValue('location_country', '');
             setValue('location_state', '');
             setValue('location_city', '');
-            setValue('remote', false);
             setValue('status', 'open');
             setValue('expected_start_date', new Date());
             setValue('apply_deadline', new Date());

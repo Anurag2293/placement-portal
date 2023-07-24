@@ -5,7 +5,10 @@ export type Developer = {
     email: string;
 }
 
-export type ProcessFormValues = {
+export type Process = {
+    id: number,
+    company_id: number,
+    createdAt: Date,
     role: string,
     description: string,
     compensation: number,
@@ -13,9 +16,8 @@ export type ProcessFormValues = {
     location_country: string,
     location_state: string,
     location_city: string,
-    remote: boolean,
-    status: string,
     mode_of_work: string,
+    status: string,
     expected_start_date: Date,
     apply_deadline: Date
 }
