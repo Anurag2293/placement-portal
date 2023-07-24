@@ -24,7 +24,7 @@ export default function DeveloperNavbar() {
                 <DevMobileNavList />
             </div>
             <div className="flex justify-start items-center text-white ">
-                <Link className="pl-0 md:pl-8 font-semibold text-xl" href="/developer">
+                <Link className="pl-0 md:pl-8 font-semibold text-xl" href="/">
                     <span>Hacker</span>
                     <span className="text-brand-primary">Code</span>
                 </Link>

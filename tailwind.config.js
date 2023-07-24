@@ -21,6 +21,7 @@ module.exports = withMT({
         'dark-secondary': '#111827',
         'dark-gray': '#576871',
         'brand-primary': '#32c766',
+        'brand-secondary': '#00751F',
         ...blackA,
         ...mauve,
         ...violet,

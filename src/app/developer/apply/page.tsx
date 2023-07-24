@@ -3,7 +3,7 @@ import React from 'react'
 import { checkEnvironment } from '@/lib/utils'
 import type { Process } from '@prisma/client'
 
-import { HORIZONTAL_VIEW_ICON, LOCATION_ICON, STACK_ICON } from '@/components/ui/SVGComponents'
+import { COMPANY_BUILDING_ICON, HORIZONTAL_VIEW_ICON, LOCATION_ICON, STACK_ICON } from '@/components/ui/SVGComponents'
 import Link from 'next/link'
 
 type Props = {}
@@ -49,11 +49,15 @@ const DeveloperApply = async (props: Props) => {
                                     </div>
                                     <div className='w-2/3 my-auto'>
                                         <h1 className='text-xl font-semibold'>{process.role}</h1>
-                                        <p className='text-base text-gray-600 flex items-center space-x-1'>
+                                        <p className='text-base text-gray-600 font-semibold flex items-center space-x-2 mt-0.5 mb-1'>
+                                            <span><COMPANY_BUILDING_ICON /></span>
+                                            <span>{process.companyName?.toUpperCase()}</span>
+                                        </p>
+                                        <p className='text-sm text-gray-600 flex items-center space-x-2'>
                                             <span><LOCATION_ICON /></span>
                                             <span>{process.location_country}</span>
                                         </p>
-                                        <p className='text-sm text-gray-600 flex items-start space-x-1'>
+                                        <p className='text-sm text-gray-600 flex items-start space-x-2'>
                                             <span className='mt-0.5'><STACK_ICON /></span>
                                             <span>{process.eligibility.trim().slice(0, 20)}</span>
                                         </p>
