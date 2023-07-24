@@ -2,16 +2,13 @@
 
 import React, { useEffect } from 'react'
 import { useUser } from "@clerk/nextjs";
-import { useRouter } from 'next/navigation'
 
 import DevActionMenu from '@/components/ui/DevNavMenu';
-import DevMenuBar from '@/components/ui/DevMenuBar';
 
 type Props = {}
 
 const DeveloperHome = (props: Props) => {
     const { isSignedIn, user } = useUser();
-    const router = useRouter()
 
     useEffect(() => {
         const validateUserWithBackend = async () => {
@@ -51,6 +48,12 @@ const DeveloperHome = (props: Props) => {
                     <div className='ml-4 my-0 md:my-4'>
                         <DevActionMenu />
                     </div>
+                </div>
+            </section>
+            <section>
+                <div id='applications' className='w-full md:w-5/6 mx-auto py-4'>
+                    <h1>Applications</h1>
+
                 </div>
             </section>
         </>
