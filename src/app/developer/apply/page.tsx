@@ -42,7 +42,7 @@ const DeveloperApply = async (props: Props) => {
                 <div className='w-11/12 md:w-5/6 mx-auto grid grid-cols-1 sm:grid-cols-2 sm:gap-8 md:grid-cols-3 md:gap-4'>
                     {processes.map((process: Process) => {
                         return (
-                            <Link href={`/developer/apply/${process.id}`}>
+                            <Link key={process.id} href={`/developer/apply/${process.id}`}>
                                 <div className='w-full md:h-40 text-black bg-inherit border border-gray-300 rounded-md p-4 mt-4 md:mt-0 hover:border-gray-800 hover:cursor-pointer flex'>
                                     <div className='w-1/3 flex justify-center items-center'>
                                         <HORIZONTAL_VIEW_ICON />

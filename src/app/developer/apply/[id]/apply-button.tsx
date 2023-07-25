@@ -58,7 +58,7 @@ const ApplicationButton = ({ process_id }: Props) => {
         } else {
             console.log('User is not signed in')
         }
-    }, [isSignedIn, user, applied, setApplied])
+    }, [isSignedIn, user, applied, setApplied, process_id])
 
     const handleApplication = async () => {
         try {

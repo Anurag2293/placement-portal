@@ -39,7 +39,7 @@ const DeveloperHome = (props: Props) => {
         } else {
             console.log('User is not signed in')
         }
-    }, [isSignedIn, user])
+    }, [isSignedIn, user, router])
 
     return (
         <>

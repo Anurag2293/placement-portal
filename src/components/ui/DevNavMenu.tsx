@@ -102,6 +102,9 @@ const ListItem = React.forwardRef(({ className, children, title, ...props } : an
     </li>
 ));
 
+// Add the display name to the component
+ListItem.displayName = 'ListItem';
+
 export default DevActionMenu;
 
 // Write types for this component props
