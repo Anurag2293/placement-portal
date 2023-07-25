@@ -2,9 +2,11 @@ import React from 'react'
 import Link from 'next/link'
 
 import { checkEnvironment } from '@/lib/utils'
+import { Process } from '@prisma/client'
+
+import ApplicationButton from './apply-button'
 import { COMPANY_BUILDING_ICON, LOCATION_ICON } from '@/components/ui/SVGComponents'
 import HorizontalSeparator from '@/components/ui/HorizontalSeparator'
-import { Process } from '@prisma/client'
 
 type Props = {
     params: {
@@ -61,7 +63,7 @@ const ProcessApplication = async ({ params }: Props) => {
                         </p>
                     </div>
                     <div className='w-full my-8'>
-                        <button className='w-full md:w-min py-2 px-16 rounded-md bg-brand-secondary text-white hover:bg-green-900 font-medium'>Apply</button>
+                        <ApplicationButton process_id={process.id} />
                     </div>
                 </div>
                 <div className='w-full md:w-3/4 bg-inherit border border-gray-300 rounded-md p-4 md:p-8 mt-4 md:mt-0'>

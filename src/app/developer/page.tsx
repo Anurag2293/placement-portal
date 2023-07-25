@@ -35,6 +35,7 @@ const DeveloperHome = (props: Props) => {
         if (isSignedIn) {
             validateUserWithBackend()
             router.refresh()
+            console.log(user)
         } else {
             console.log('User is not signed in')
         }
