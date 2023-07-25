@@ -48,7 +48,7 @@ export default function DeveloperNavbar() {
                 </div>
             </div>
             <div className="pr-8 md:block">
-                {isSignedIn ? <UserButton /> : <Link href="/developer/sign-in">Sign In</Link>}
+                {isSignedIn ? <UserButton afterSignOutUrl="/" /> : <Link href="/developer/sign-in">Sign In</Link>}
             </div>
         </nav>
     );
