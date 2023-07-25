@@ -32,17 +32,17 @@ export default function DeveloperNavbar() {
                 <div className="md:block hidden">
                     <div className="flex justify-between items-center space-x-4">
                         <div className="">
-                            <Link className={`px-4 pb-4 ${pathname === '/developer' && 'border-b-4 border-brand-primary'}`} href="/developer">
+                            <Link className={`px-4 pb-4 text-gray-400 hover:text-white ${pathname === '/developer' && 'border-b-4 border-brand-primary text-white'}`} href="/developer">
                                 Dashboard
                             </Link>
                         </div>
                         <div>
-                            <Link className={`px-4 pb-4 ${pathname === '/developer/apply' && 'border-b-4 border-brand-primary'}`} href="/developer/apply">
+                            <Link className={`px-4 pb-4 text-gray-400 hover:text-white ${pathname === '/developer/apply' && 'border-b-4 border-brand-primary text-white'}`} href="/developer/apply">
                                 Apply
                             </Link>
                         </div>
                         <div>
-                            <Link className={`px-4 pb-4 ${pathname === '/developer/practice' && 'border-b-4 border-brand-primary'}`} href="/developer/practice">
+                            <Link className={`px-4 pb-4 text-gray-400 hover:text-white ${pathname === '/developer/practice' && 'border-b-4 border-brand-primary text-white'}`} href="/developer/practice">
                                 Practice
                             </Link>
                         </div>

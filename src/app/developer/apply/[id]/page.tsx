@@ -64,7 +64,7 @@ const ProcessApplication = async ({ params }: Props) => {
                         <button className='w-full md:w-min py-2 px-16 rounded-md bg-brand-secondary text-white hover:bg-green-900 font-medium'>Apply</button>
                     </div>
                 </div>
-                <div className='w-full md:w-3/4 bg-inherit border border-gray-300 rounded-md md:p-8 mt-4 md:mt-0'>
+                <div className='w-full md:w-3/4 bg-inherit border border-gray-300 rounded-md p-4 md:p-8 mt-4 md:mt-0'>
                     <div>
                         <p className='text-gray-500'>{process.description}</p>
                     </div>
