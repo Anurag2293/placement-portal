@@ -34,7 +34,7 @@ const DeveloperHome = (props: Props) => {
 
         if (isSignedIn) {
             validateUserWithBackend()
-            router.refresh()
+            // router.refresh()
             console.log(user)
         } else {
             console.log('User is not signed in')
@@ -56,7 +56,7 @@ const DeveloperHome = (props: Props) => {
             </section>
             <section>
                 <div id='applications' className='w-full md:w-5/6 mx-auto py-4'>
-                    <h1>Applications</h1>
+                    <h1 className='text-white'>Applications</h1>
                     
                 </div>
             </section>
