@@ -17,8 +17,6 @@ export default function DeveloperNavbar() {
     const { isSignedIn } = useUser();
 
     return (
-        // build a navbar with links to the different pages and a profile button
-        // make it beautiful
         <nav className="flex justify-between items-center md:justify-between md:items-center h-14 bg-dark-primary text-black shadow-sm" role="navigation">
             <div className="pl-4 md:hidden">
                 <DevMobileNavList />
