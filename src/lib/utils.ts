@@ -1,6 +1,9 @@
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
- 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
-}
+
+export const checkEnvironment = () => {
+  let base_url =
+      process.env.NODE_ENV === "development"
+          ? "http://localhost:3000"
+          : "https://placement-portal-anurag2293.vercel.app";
+
+  return base_url;
+};
