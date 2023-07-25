@@ -11,7 +11,7 @@ type Props = {}
 const CreateProcess = (props: Props) => {
     const { data: session, status } = useSession();
     const router = useRouter();
-    const { id: hire_id } = useAppSelector(state => state.hire.value);
+    const { id: hire_id, name: company_name } = useAppSelector(state => state.hire.value);
 
     useEffect(() => {
         if (!session) {
@@ -23,7 +23,7 @@ const CreateProcess = (props: Props) => {
         <main id="page-content" className="flex flex-auto flex-col max-w-full">
             <div className="container xl:max-w-7xl mx-auto p-4 lg:p-8">
                 <div className="min-h-full p-4 rounded-xl bg-gray-50 border-2 border-dashed border-gray-200 text-gray-400 dark:bg-gray-800 dark:border-gray-700">
-                    <ProcessForm hire_id={hire_id} />
+                    <ProcessForm hire_id={hire_id} company_name={company_name} />
                 </div>
             </div>
         </main>

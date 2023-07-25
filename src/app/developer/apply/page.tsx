@@ -43,7 +43,7 @@ const DeveloperApply = async (props: Props) => {
                     {processes.map((process: Process) => {
                         return (
                             <Link href={`/developer/apply/${process.id}`}>
-                                <div className='w-full md:h-32 text-black bg-inherit border border-gray-300 rounded-md p-4 mt-4 md:mt-0 hover:border-gray-800 hover:cursor-pointer flex'>
+                                <div className='w-full md:h-40 text-black bg-inherit border border-gray-300 rounded-md p-4 mt-4 md:mt-0 hover:border-gray-800 hover:cursor-pointer flex'>
                                     <div className='w-1/3 flex justify-center items-center'>
                                         <HORIZONTAL_VIEW_ICON />
                                     </div>
@@ -51,7 +51,7 @@ const DeveloperApply = async (props: Props) => {
                                         <h1 className='text-xl font-semibold'>{process.role}</h1>
                                         <p className='text-base text-gray-600 font-semibold flex items-center space-x-2 mt-0.5 mb-1'>
                                             <span><COMPANY_BUILDING_ICON /></span>
-                                            <span>{process.companyName?.toUpperCase()}</span>
+                                            <span>{process.company_name?.toUpperCase()}</span>
                                         </p>
                                         <p className='text-sm text-gray-600 flex items-center space-x-2'>
                                             <span><LOCATION_ICON /></span>

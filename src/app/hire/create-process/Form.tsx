@@ -4,7 +4,12 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 import type { Process } from "@prisma/client";
 
-export default function ProcessForm({ hire_id }: { hire_id: string }) {
+type Props = {
+    hire_id: string;
+    company_name: string;
+}
+
+export default function ProcessForm({ hire_id, company_name }: Props) {
     const router = useRouter();
     const { register, handleSubmit, setValue, formState: { errors } } = useForm<Process>();
 
@@ -14,9 +19,10 @@ export default function ProcessForm({ hire_id }: { hire_id: string }) {
             const newData = { 
                 ...data, 
                 company_id : hire_id, 
+                company_name,
                 compensation: parsedCompensation,
             }
-            const response = await fetch('/api/process/create', {
+            const response = await fetch('/api/process', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

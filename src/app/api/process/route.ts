@@ -27,7 +27,7 @@ export const GET = async (request: Request) => {
                     mode_of_work: true,
                     expected_start_date: true,
                     apply_deadline: true,
-                    companyName: true,
+                    company_name: true,
                 }
             });
             return NextResponse.json({ success: true, message: "Process Successfully Fetched!", process });
@@ -51,7 +51,7 @@ export const GET = async (request: Request) => {
                         mode_of_work: true,
                         expected_start_date: true,
                         apply_deadline: true,
-                        companyName: true,
+                        company_name: true,
                     }
                 });
                 return NextResponse.json({ success: true, message: "Processes Successfully Fetched!", processes });
@@ -75,7 +75,7 @@ export const GET = async (request: Request) => {
                         mode_of_work: true,
                         expected_start_date: true,
                         apply_deadline: true,
-                        companyName: true,
+                        company_name: true,
                     }
                 });
                 return NextResponse.json({ success: true, message: "Processes Successfully Fetched!", processes });
@@ -89,3 +89,42 @@ export const GET = async (request: Request) => {
     }
 }
 
+export const POST = async (request: Request) => {
+    const body = await request.json();
+    const { company_id, role, status, mode_of_work, location_city, location_state, location_country, eligibility, compensation, description, company_name  } = body;
+
+    try {
+        const company = await prisma.company.findUnique({
+            where: {
+                id: Number(company_id)
+            }
+        })
+
+        if (!company) {
+            return NextResponse.json({ success: false, message: "Company Not Found" }, { status: 404 });
+        }
+        if (company.name !== company_name) {
+            return NextResponse.json({ success: false, message: "Company Name and ID does not match" }, { status: 400 });
+        }
+
+        const process = await prisma.process.create({
+            data: {
+                company_id,
+                role,
+                description,
+                compensation,
+                eligibility,
+                location_country,
+                location_state,
+                location_city,
+                mode_of_work,
+                status: status || "open",
+                company_name,
+            }
+        })
+
+        return NextResponse.json({success: true, message: "Process Successfully Created!", process});
+    } catch (error: any) {
+        return NextResponse.json({ success: false, message: error.message, body }, { status: 500 });
+    }
+}

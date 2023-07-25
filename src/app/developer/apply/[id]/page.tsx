@@ -52,7 +52,7 @@ const ProcessApplication = async ({ params }: Props) => {
                     <div className='w-full my-8'>
                         <p className='text-base text-gray-800 font-medium flex items-center space-x-2 mt-0.5 mb-1'>
                             <span><COMPANY_BUILDING_ICON /></span>
-                            <span>{process.companyName?.toUpperCase()}</span>
+                            <span>{process.company_name?.toUpperCase()}</span>
                         </p>
                         <HorizontalSeparator color={"gray-500"} />
                         <p className='text-base text-gray-800 flex items-center space-x-2'>
