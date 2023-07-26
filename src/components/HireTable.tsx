@@ -44,7 +44,7 @@ type Props = {
 
 export default function HireTable({ applications }: Props) {
     return (
-        <Card className="h-full w-full bg-dark-secondary">
+        <Card className="h-full w-full bg-dark-secondary z-0">
             <CardBody className="px-0">
                 <table className="w-full min-w-max table-auto text-left">
                     <thead>
@@ -100,7 +100,7 @@ export default function HireTable({ applications }: Props) {
                                     </td>
                                     <td className={classes}>
                                         <Typography variant="small" color="white" className="font-normal">
-                                            {application.createdAt}
+                                            {new Date(application.createdAt).toLocaleDateString('en-GB').replaceAll('/', '-')}
                                         </Typography>
                                     </td>
                                     <td className={classes}>

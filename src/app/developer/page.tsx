@@ -5,7 +5,7 @@ import { useUser } from "@clerk/nextjs";
 import { useRouter } from 'next/navigation';
 
 import DevActionMenu from '@/components/ui/DevNavMenu';
-import HireTable from '@/components/HireTable';
+import HireTable from '@/components/HireTable'
 
 type Props = {}
 
@@ -72,7 +72,11 @@ const DeveloperHome = (props: Props) => {
                 <div className='w-full md:w-5/6 mx-auto py-4'>
                     <div className='w-full md:w-1/4 rounded-md p-4 mt-4 md:mt-0'>
                         <h1 className='text-white text-xl font-semibold'>Welcome, {user?.fullName}</h1>
-                        <p className='text-white text-sm font-light'>You are logged in as a developer</p>
+                        {isSignedIn ? (
+                            <p className='text-white text-sm font-light'>You are logged in as a developer</p>
+                        ) : (
+                            <p className='text-white text-sm font-light'>You are logged out</p>
+                        )}
                     </div>
                     <div className='ml-4 my-0 md:my-4'>
                         <DevActionMenu />

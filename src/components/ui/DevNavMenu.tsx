@@ -9,7 +9,7 @@ const DevActionMenu = () => {
         <NavigationMenu.Root className="relative flex w-full justify-center">
             <NavigationMenu.List className="center shadow-blackA7 m-0 flex list-none rounded-[6px] bg-dark-primary p-1 shadow-[0_2px_10px]">
                 <NavigationMenu.Item>
-                    <NavigationMenu.Trigger className="text-brand-primary hover:bg-dark-gray focus:shadow-dark-gray group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-3 py-2 text-[15px] font-medium leading-none outline-none focus:shadow-[0_0_0_2px]">
+                    <NavigationMenu.Trigger className="text-brand-primary hover:bg-dark-gray focus:shadow-dark-gray group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-3 py-2 text-[15px] font-medium leading-none outline-none focus:shadow-[0_0_0_2px] z-10">
                         Actions{' '}
                         <CaretDownIcon
                             className="text-brand-primary relative top-[1px] transition-transform duration-[250] ease-in group-data-[state=open]:-rotate-180"
@@ -32,7 +32,7 @@ const DevActionMenu = () => {
                 </NavigationMenu.Item>
 
                 <NavigationMenu.Item>
-                    <NavigationMenu.Trigger className="text-brand-primary hover:bg-dark-gray focus:shadow-dark-gray group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-3 py-2 text-[15px] font-medium leading-none outline-none focus:shadow-[0_0_0_2px]">
+                    <NavigationMenu.Trigger className="text-brand-primary hover:bg-dark-gray focus:shadow-dark-gray group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-3 py-2 text-[15px] font-medium leading-none outline-none focus:shadow-[0_0_0_2px] z-10">
                         Overview{' '}
                         <CaretDownIcon
                             className="text-brand-primary relative top-[1px] transition-transform duration-[250] ease-in group-data-[state=open]:-rotate-180"
