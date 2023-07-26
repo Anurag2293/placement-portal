@@ -7,22 +7,77 @@ export const GET = async (request: Request) => {
     const developer_id = searchParams.get('developer_id') || -1
 
     try {
-        const applications = await prisma.application.findMany({
-            where: {
-                process_id : Number(process_id)
-            },
-            select: {
-                id: true,
-                process_id: true,
-                developer_id: true,
-                status: true,
-                createdAt: true,
-            }
-        });
+        if (developer_id === -1 && process_id === -1) {
+            const applications = await prisma.application.findMany({
+                select: {
+                    id: true,
+                    process_id: true,
+                    developer_id: true,
+                    status: true,
+                    createdAt: true,
+                }
+            });
 
-        const filteredApplication = applications.filter((application) => application.developer_id === Number(developer_id));
+            return NextResponse.json({
+                success: true,
+                message: "Applications Fetched successfully!",
+                applications,
 
-        return NextResponse.json({ success: true, message: "Applications Fetched successfully!", applications, filteredApplication });
+            });
+        }
+        else if (process_id === -1) {
+            const applications = await prisma.application.findMany({
+                where: {
+                    developer_id: Number(developer_id)
+                },
+            });
+
+            const populatedApplications = await Promise.all(applications.map(async (application) => {
+                const process = await prisma.process.findUnique({
+                    where: {
+                        id: application.process_id
+                    },
+                    select: {
+                        id: true,
+                        role: true,
+                        status: true,
+                        createdAt: true,
+                        description: true,
+                        compensation: true,
+                        eligibility: true,
+                        location_country: true,
+                        location_state: true,
+                        location_city: true,
+                        mode_of_work: true,
+                        expected_start_date: true,
+                        apply_deadline: true,
+                        company_name: true,
+                    }
+                });
+                return { ...application, process };
+            }));
+
+            return NextResponse.json({ success: true, message: "Applications Fetched successfully!", applications, populatedApplications });
+        }
+        else {
+
+            const applications = await prisma.application.findMany({
+                where: {
+                    process_id: Number(process_id)
+                },
+                select: {
+                    id: true,
+                    process_id: true,
+                    developer_id: true,
+                    status: true,
+                    createdAt: true,
+                }
+            });
+
+            const filteredApplication = applications.filter((application) => application.developer_id === Number(developer_id));
+
+            return NextResponse.json({ success: true, message: "Applications Fetched successfully!", applications, filteredApplication });
+        }
     }
     catch (error: any) {
         return NextResponse.json({ success: false, message: error.message }, { status: 404 });

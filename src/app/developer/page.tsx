@@ -5,41 +5,66 @@ import { useUser } from "@clerk/nextjs";
 import { useRouter } from 'next/navigation';
 
 import DevActionMenu from '@/components/ui/DevNavMenu';
+import HireTable from '@/components/HireTable';
 
 type Props = {}
 
 const DeveloperHome = (props: Props) => {
     const router = useRouter()
     const { isSignedIn, user } = useUser();
+    const [applications, setApplications] = React.useState([])
+    const [loading, setLoading] = React.useState(false)
+    const [developerId, setDeveloperId] = React.useState<Number>(-1)
 
     useEffect(() => {
-        const validateUserWithBackend = async () => {
+        if (isSignedIn) {
+            router.refresh()
+        } else {
+            console.log('User is not signed in')
+        }
+    }, [isSignedIn, user, router])
+
+    const fetchDeveloperApplications = async () => {
+        try {
+            const res = await fetch(`/api/process/apply?developer_id=${developerId}`)
+            const { success, message, populatedApplications } = await res.json()
+
+            if (!success) {
+                throw new Error(message)
+            }
+
+            setApplications(populatedApplications)
+        } catch (error: any) {
+            setApplications([])
+            alert(error.message)
+        }
+    }
+
+    useEffect(() => {
+        const fetchDeveloperId = async () => {
             try {
-                const res = await fetch('/api/developer/validate', {
-                    method: 'POST',
+                const res = await fetch(`/api/developer?external_id=${user?.id}`, {
+                    method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({})
+                    }
                 })
                 const { success, message, developer } = await res.json()
                 if (!success) {
                     throw new Error(message)
                 }
-                console.log(message)
+                setDeveloperId(developer.id)
             } catch (error: any) {
-                console.log(error.message)
+                console.error(error.message)
             }
         }
 
-        if (isSignedIn) {
-            validateUserWithBackend()
-            // router.refresh()
-            console.log(user)
-        } else {
-            console.log('User is not signed in')
-        }
-    }, [isSignedIn, user, router])
+        router.refresh();
+        setLoading(true);
+        fetchDeveloperId();
+        fetchDeveloperApplications();
+        setLoading(false);
+    }, [developerId, user?.id, router])
 
     return (
         <>
@@ -56,8 +81,18 @@ const DeveloperHome = (props: Props) => {
             </section>
             <section>
                 <div id='applications' className='w-full md:w-5/6 mx-auto py-4'>
-                    <h1 className='text-white'>Applications</h1>
-                    
+                    <h1 className='text-white text-xl font-semibold'>Applications</h1>
+                    {applications.length > 0 ? (
+                        <HireTable applications={applications} />
+                    ) : loading ? (
+                        <div className='w-full md:w-1/2'>
+                            <p className='text-white text-center text-md font-semibold'>Loading...</p>
+                        </div>
+                    ) : (
+                        <div className='w-full md:w-1/2'>
+                            <p className='text-white text-sm font-light'>You have not applied to any processes yet</p>
+                        </div>
+                    )}
                 </div>
             </section>
         </>

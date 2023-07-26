@@ -34,7 +34,7 @@ const ApplicationButton = ({ process_id }: Props) => {
     }
 
     useEffect(() => {
-        const fetchDeveloperId = async (developerExternalId: string) => {
+        const fetchDeveloperId = async (developerExternalId: string, setDeveloperIdHook: any) => {
             try {
                 const res = await fetch(`/api/developer?external_id=${developerExternalId}`, {
                     method: 'GET',
@@ -46,7 +46,7 @@ const ApplicationButton = ({ process_id }: Props) => {
                 if (!success) {
                     throw new Error(message)
                 }
-                setDeveloperId(developer.id)
+                setDeveloperIdHook(developer.id)
                 checkApplication(process_id, developer.id)
             } catch (error: any) {
                 console.error(error.message)
@@ -54,7 +54,7 @@ const ApplicationButton = ({ process_id }: Props) => {
         }
 
         if (isSignedIn) {
-            fetchDeveloperId(user.id)
+            fetchDeveloperId(user.id, setDeveloperId)
         } else {
             console.log('User is not signed in')
         }

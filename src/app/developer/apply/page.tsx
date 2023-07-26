@@ -28,22 +28,22 @@ const DeveloperApply = async (props: Props) => {
 
     return (
         <>
-            <div className='w-full md:w-5/6 mx-auto py-4 bg-dark-primary'>
+            <div className='w-full mx-auto py-4 bg-dark-primary'>
                 <div className='text-center text-white'>
                     <h1 className=' text-4xl font-mono font-bold'>
                         Find your Dream Job in <span className='text-yellow-500'>Tech</span>
                     </h1>
-                    <p>
+                    <p className='md:w-1/2 md:mx-auto text-lg py-4'>
                         Apply to multiple companies with a single application. Get evaluated by the best companies in the world.
                     </p>
                 </div>
-            </div >
-            <div className='w-full bg-white py-8'>
+            </div>
+            <div className='w-full py-8'>
                 <div className='w-11/12 md:w-5/6 mx-auto grid grid-cols-1 sm:grid-cols-2 sm:gap-8 md:grid-cols-3 md:gap-4'>
                     {processes.map((process: Process) => {
                         return (
                             <Link key={process.id} href={`/developer/apply/${process.id}`}>
-                                <div className='w-full md:h-40 text-black bg-inherit border border-gray-300 rounded-md p-4 mt-4 md:mt-0 hover:border-gray-800 hover:cursor-pointer flex'>
+                                <div className='w-full md:min-h-max p-4 mt-4 md:mt-0 flex text-black bg-inherit border border-gray-300 rounded-md hover:bg-gray-100 hover:border-gray-800 hover:cursor-pointer '>
                                     <div className='w-1/3 flex justify-center items-center'>
                                         <HORIZONTAL_VIEW_ICON />
                                     </div>

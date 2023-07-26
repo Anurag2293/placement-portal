@@ -13,7 +13,7 @@ export default function DeveloperLayout({
     children: React.ReactNode
 }) {
     return (
-        <section className='h-screen bg-dark-primary'>
+        <section className='h-min min-h-screen bg-dark-primary'>
             <DeveloperNavbar />
             {children}
         </section>
