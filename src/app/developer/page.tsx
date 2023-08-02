@@ -24,25 +24,29 @@ const DeveloperHome = (props: Props) => {
         }
     }, [isSignedIn, user, router])
 
-    const fetchDeveloperApplications = async () => {
-        try {
-            const res = await fetch(`/api/process/apply?developer_id=${developerId}`)
-            const { success, message, populatedApplications } = await res.json()
-
-            if (!success) {
-                throw new Error(message)
-            }
-
-            setApplications(populatedApplications)
-        } catch (error: any) {
-            setApplications([])
-            alert(error.message)
-        }
-    }
-
     useEffect(() => {
+        const fetchDeveloperApplications = async () => {
+            try {
+                setLoading(true)
+                const res = await fetch(`/api/process/apply?developer_id=${developerId}`)
+                const { success, message, populatedApplications } = await res.json()
+    
+                if (!success) {
+                    throw new Error(message)
+                }
+    
+                setApplications(populatedApplications)
+            } catch (error: any) {
+                setApplications([])
+                alert(error.message)
+            } finally {
+                setLoading(false)
+            }
+        }
+
         const fetchDeveloperId = async () => {
             try {
+                setLoading(true);
                 const res = await fetch(`/api/developer?external_id=${user?.id}`, {
                     method: 'GET',
                     headers: {
@@ -56,14 +60,14 @@ const DeveloperHome = (props: Props) => {
                 setDeveloperId(developer.id)
             } catch (error: any) {
                 console.error(error.message)
+            } finally {
+                setLoading(false);
             }
         }
 
         router.refresh();
-        setLoading(true);
         fetchDeveloperId();
         fetchDeveloperApplications();
-        setLoading(false);
     }, [developerId, user?.id, router])
 
     return (
