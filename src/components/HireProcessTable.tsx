@@ -3,10 +3,11 @@ import Link from 'next/link';
 import type { Process } from '@prisma/client';
 
 type Props = {
-    processes: Process[]
+    processes: Process[],
+    processesWithApplication: any[]
 }
 
-const HireProcessTable = ({ processes }: Props) => {
+const HireProcessTable = ({ processes, processesWithApplication }: Props) => {
     return (
         <div className="flex flex-col my-2">
             <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -22,6 +23,9 @@ const HireProcessTable = ({ processes }: Props) => {
                                         {`Created On`}
                                     </th>
                                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                        {`Applicants`}
+                                    </th>
+                                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                                         {`Status`}
                                     </th>
                                     <th scope="col" className="relative px-6 py-3">
@@ -30,13 +34,16 @@ const HireProcessTable = ({ processes }: Props) => {
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
-                                {processes.map((process: Process) => (
+                                {processes.map((process: Process, index) => (
                                     <tr key={process.id}>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300">
                                             {process.role}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
                                             {new Date(process.createdAt).toLocaleDateString('en-GB').replaceAll('/', '-')}
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300">
+                                            <span className='block text-left ml-8'>{processesWithApplication[index].length}</span>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             {process.status === 'open' && (

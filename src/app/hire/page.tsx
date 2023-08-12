@@ -25,18 +25,38 @@ const HireDashboard = (props: Props) => {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
     const [processes, setProcesses] = useState<Process[]>([]);
+    const [processesWithApplication, setProcessesWithApplication] = useState<any[]>([])
 
     useEffect(() => {
         const fetchProcesses = async (company_id: string) => {
-            console.log("fetching processes")
-            setLoading(true)
-            const res = await fetch(`/api/process?company_id=${company_id}`, {
-                method: 'GET',
-            });
-            const data = await res.json();
-            setLoading(false);
-            setProcesses(data.processes);
-            console.log({ fetchedProcesses: data})
+            try {
+                console.log("fetching processes")
+                setLoading(true)
+                const res = await fetch(`/api/process?company_id=${company_id}`, {
+                    method: 'GET',
+                });
+                const data = await res.json();
+                setLoading(false);
+                setProcesses(data.processes);
+                applicationsForProcess(data.processes);
+                console.log({ fetchedProcesses: data.processes})
+            } catch (error) {
+                alert("Error in fetching process")   
+            }
+        }
+
+        const applicationsForProcess = async (processes: Process[]) => {
+            try {
+                const PopulatedApplications: any[] = await Promise.all(processes.map(async (process: Process) => {
+                    const response = await fetch(`/api/process/apply?process_id=${process.id}`);
+                    const { success, message, applications, populatedApplications } = await response.json();
+                    return populatedApplications;
+                }));
+                setProcessesWithApplication(PopulatedApplications);
+                console.log({PopulatedApplications})
+            } catch (error) {
+                alert("Error in fetching process in applications")
+            }
         }
 
         const fetchCompany = async (company_id: string) => {
@@ -77,7 +97,9 @@ const HireDashboard = (props: Props) => {
                         <p className="font-semibold text-black">{`Summary of Processes`}</p>
                         {!loading && processes.length === 0 && <p>{`No Process Found.`}</p>}
                         {loading && <p>{`Loading...`}</p>}
-                        {processes.length > 0 && <HireProcessTable processes={processes} />}
+                        {processes.length > 0 
+                            && processesWithApplication.length > 0 
+                            && <HireProcessTable processes={processes} processesWithApplication={processesWithApplication} />}
                     </div>
 
                 </div>

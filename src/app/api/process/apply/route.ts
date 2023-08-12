@@ -7,6 +7,7 @@ export const GET = async (request: Request) => {
     const developer_id = searchParams.get('developer_id') || -1
 
     try {
+        // developer id and process id not given -> Fetch all applications
         if (developer_id === -1 && process_id === -1) {
             const applications = await prisma.application.findMany({
                 select: {
@@ -25,6 +26,7 @@ export const GET = async (request: Request) => {
 
             });
         }
+        // developer id given but process id not given -> Fetch all applications of developer
         else if (process_id === -1) {
             const applications = await prisma.application.findMany({
                 where: {
@@ -59,8 +61,37 @@ export const GET = async (request: Request) => {
 
             return NextResponse.json({ success: true, message: "Applications Fetched successfully!", applications, populatedApplications });
         }
-        else {
+        // process id given but developer id not given -> Fetch all applications of process
+        else if (developer_id === -1) {
+            const applications = await prisma.application.findMany({
+                where: {
+                    process_id: Number(process_id)
+                },
+            });
 
+            const populatedApplications = await Promise.all(applications.map(async (application) => {
+                const developer = await prisma.developer.findUnique({
+                    where: {
+                        id: application.developer_id
+                    },
+                    select: {
+                        id: true,
+                        name: true,
+                        email: true,
+                        bio: true,
+                        github: true,
+                        linkedin: true,
+                        website: true,
+                        avatar: true,
+                        createdAt: true,
+                    }
+                });
+                return { ...application, developer };
+            }));
+            
+            return NextResponse.json({ success: true, message: "Applications for a process fetched successfully!", applications, populatedApplications });
+        }
+        else {
             const applications = await prisma.application.findMany({
                 where: {
                     process_id: Number(process_id)
