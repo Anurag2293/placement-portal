@@ -18,9 +18,9 @@ import { reduxlogOut } from '@/redux/features/hire-slice';
 
 const navigation: NavigationItem[] = [
 	{ name: 'Dashboard', href: '/hire', icon: DASHBOARD_ICON },
-	{ name: 'Projects', href: '/hire/projects', icon: PROJECTS_ICON },
-	{ name: 'Sales', href: '/hire/sales', icon: SALES_ICON },
-	{ name: 'Customers', href: '/hire/customers', icon: CUSTOMERS_ICON },
+	{ name: 'Create Process', href: '/hire/create-process', icon: SALES_ICON },
+	// { name: 'Projects', href: '/hire/projects', icon: PROJECTS_ICON },
+	// { name: 'Customers', href: '/hire/customers', icon: CUSTOMERS_ICON },
 ]
 
 interface NavigationItem {
@@ -98,71 +98,16 @@ export default function HireNavbar() {
 								>
 									<Menu.Items className="absolute right-0 origin-top-right z-10 mt-2 w-48 shadow-xl rounded-lg dark:shadow-gray-900 focus:outline-none">
 										<div className="bg-white ring-1 ring-black ring-opacity-5 rounded-lg divide-y divide-gray-100 dark:bg-gray-800 dark:divide-gray-700 dark:ring-gray-700">
-											<div className="p-2.5 space-y-1">
-												<Menu.Item>
-													{({ active }) => (
-														<a
-															href="#"
-															className={`group text-sm font-medium flex items-center justify-between space-x-2 px-2.5 py-2 rounded-lg border border-transparent ${active ? "text-blue-800 bg-blue-50 dark:text-white dark:bg-gray-700/75 dark:border-transparent" : "text-gray-700 hover:text-blue-800 hover:bg-blue-50 active:border-blue-100 dark:text-gray-200 dark:hover:text-white dark:hover:bg-gray-700/75 dark:active:border-gray-600"
-																}`}
-														>
-															<INBOX_ICON />
-															<span className="grow">Inbox</span>
-															<div className="font-semibold inline-flex px-1.5 py-0.5 leading-4 text-xs rounded-full border border-blue-200 text-blue-700 bg-blue-100 dark:text-blue-50 dark:bg-blue-700 dark:border-blue-700">2</div>
-														</a>
-													)}
-												</Menu.Item>
-												<Menu.Item>
-													{({ active }) => (
-														<a
-															href="#"
-															className={`group text-sm font-medium flex items-center justify-between space-x-2 px-2.5 py-2 rounded-lg border border-transparent ${active ? "text-blue-800 bg-blue-50 dark:text-white dark:bg-gray-700/75 dark:border-transparent" : "text-gray-700 hover:text-blue-800 hover:bg-blue-50 active:border-blue-100 dark:text-gray-200 dark:hover:text-white dark:hover:bg-gray-700/75 dark:active:border-gray-600"
-																}`}
-														>
-															<NOTIFICATIONS_ICON />
-															<span className="grow">Notifications</span>
-															<div className="font-semibold inline-flex px-1.5 py-0.5 leading-4 text-xs rounded-full border border-blue-200 text-blue-700 bg-blue-100 dark:text-blue-50 dark:bg-blue-700 dark:border-blue-700">5</div>
-														</a>
-													)}
-												</Menu.Item>
-											</div>
-											<div className="p-2.5 space-y-1">
-												<Menu.Item>
-													{({ active }) => (
-														<a
-															href="#"
-															className={`group text-sm font-medium flex items-center justify-between space-x-2 px-2.5 py-2 rounded-lg border border-transparent ${active ? "text-blue-800 bg-blue-50 dark:text-white dark:bg-gray-700/75 dark:border-transparent" : "text-gray-700 hover:text-blue-800 hover:bg-blue-50 active:border-blue-100 dark:text-gray-200 dark:hover:text-white dark:hover:bg-gray-700/75 dark:active:border-gray-600"
-																}`}
-														>
-															<ACCOUNT_ICON />
-															<span className="grow">Account</span>
-														</a>
-													)}
-												</Menu.Item>
-												<Menu.Item>
-													{({ active }) => (
-														<a
-															href="#"
-															className={`group text-sm font-medium flex items-center justify-between space-x-2 px-2.5 py-2 rounded-lg border border-transparent ${active ? "text-blue-800 bg-blue-50 dark:text-white dark:bg-gray-700/75 dark:border-transparent" : "text-gray-700 hover:text-blue-800 hover:bg-blue-50 active:border-blue-100 dark:text-gray-200 dark:hover:text-white dark:hover:bg-gray-700/75 dark:active:border-gray-600"
-																}`}
-														>
-															<SETTINGS_ICON />
-															<span className="grow">Settings</span>
-														</a>
-													)}
-												</Menu.Item>
-											</div>
 											<div onClick={logOutHandler} className="p-2.5 space-y-1">
 												<Menu.Item>
 													{({ active }) => (
-														<a
-															href="#"
-															className={`group text-sm font-medium flex items-center justify-between space-x-2 px-2.5 py-2 rounded-lg border border-transparent ${active ? "text-blue-800 bg-blue-50 dark:text-white dark:bg-gray-700/75 dark:border-transparent" : "text-gray-700 hover:text-blue-800 hover:bg-blue-50 active:border-blue-100 dark:text-gray-200 dark:hover:text-white dark:hover:bg-gray-700/75 dark:active:border-gray-600"
+														<p
+															className={`group text-sm font-medium flex items-center justify-between space-x-2 px-2.5 py-2 rounded-lg border border-transparent hover:cursor-pointer ${active ? "text-blue-800 bg-blue-50 dark:text-white dark:bg-gray-700/75 dark:border-transparent" : "text-gray-700 hover:text-blue-800 hover:bg-blue-50 active:border-blue-100 dark:text-gray-200 dark:hover:text-white dark:hover:bg-gray-700/75 dark:active:border-gray-600"
 																}`}
 														>
 															<SIGNOUT_ICON />
 															<span className="grow">Sign out</span>
-														</a>
+														</p>
 													)}
 												</Menu.Item>
 											</div>
@@ -206,3 +151,59 @@ export default function HireNavbar() {
 		</>
 	)
 }
+
+
+{/* <div className="p-2.5 space-y-1">
+		<Menu.Item>
+			{({ active }) => (
+				<a
+					href="#"
+					className={`group text-sm font-medium flex items-center justify-between space-x-2 px-2.5 py-2 rounded-lg border border-transparent ${active ? "text-blue-800 bg-blue-50 dark:text-white dark:bg-gray-700/75 dark:border-transparent" : "text-gray-700 hover:text-blue-800 hover:bg-blue-50 active:border-blue-100 dark:text-gray-200 dark:hover:text-white dark:hover:bg-gray-700/75 dark:active:border-gray-600"
+						}`}
+				>
+					<INBOX_ICON />
+					<span className="grow">Inbox</span>
+					<div className="font-semibold inline-flex px-1.5 py-0.5 leading-4 text-xs rounded-full border border-blue-200 text-blue-700 bg-blue-100 dark:text-blue-50 dark:bg-blue-700 dark:border-blue-700">2</div>
+				</a>
+			)}
+		</Menu.Item>
+		<Menu.Item>
+			{({ active }) => (
+				<a
+					href="#"
+					className={`group text-sm font-medium flex items-center justify-between space-x-2 px-2.5 py-2 rounded-lg border border-transparent ${active ? "text-blue-800 bg-blue-50 dark:text-white dark:bg-gray-700/75 dark:border-transparent" : "text-gray-700 hover:text-blue-800 hover:bg-blue-50 active:border-blue-100 dark:text-gray-200 dark:hover:text-white dark:hover:bg-gray-700/75 dark:active:border-gray-600"
+						}`}
+				>
+					<NOTIFICATIONS_ICON />
+					<span className="grow">Notifications</span>
+					<div className="font-semibold inline-flex px-1.5 py-0.5 leading-4 text-xs rounded-full border border-blue-200 text-blue-700 bg-blue-100 dark:text-blue-50 dark:bg-blue-700 dark:border-blue-700">5</div>
+				</a>
+			)}
+		</Menu.Item>
+	</div>
+	<div className="p-2.5 space-y-1">
+		<Menu.Item>
+			{({ active }) => (
+				<a
+					href="#"
+					className={`group text-sm font-medium flex items-center justify-between space-x-2 px-2.5 py-2 rounded-lg border border-transparent ${active ? "text-blue-800 bg-blue-50 dark:text-white dark:bg-gray-700/75 dark:border-transparent" : "text-gray-700 hover:text-blue-800 hover:bg-blue-50 active:border-blue-100 dark:text-gray-200 dark:hover:text-white dark:hover:bg-gray-700/75 dark:active:border-gray-600"
+						}`}
+				>
+					<ACCOUNT_ICON />
+					<span className="grow">Account</span>
+				</a>
+			)}
+		</Menu.Item>
+		<Menu.Item>
+			{({ active }) => (
+				<a
+					href="#"
+					className={`group text-sm font-medium flex items-center justify-between space-x-2 px-2.5 py-2 rounded-lg border border-transparent ${active ? "text-blue-800 bg-blue-50 dark:text-white dark:bg-gray-700/75 dark:border-transparent" : "text-gray-700 hover:text-blue-800 hover:bg-blue-50 active:border-blue-100 dark:text-gray-200 dark:hover:text-white dark:hover:bg-gray-700/75 dark:active:border-gray-600"
+						}`}
+				>
+					<SETTINGS_ICON />
+					<span className="grow">Settings</span>
+				</a>
+			)}
+		</Menu.Item>
+	</div> */}

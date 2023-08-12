@@ -5,7 +5,7 @@ import { useUser } from "@clerk/nextjs";
 import { useRouter } from 'next/navigation';
 
 import DevActionMenu from '@/components/ui/DevNavMenu';
-import HireTable from '@/components/HireTable'
+import HireTable from '@/components/DevProcessTable'
 
 type Props = {}
 
